@@ -1,20 +1,18 @@
-# از یک ایمیج رسمی Node.js شروع می‌کنیم
+# Start from an official Node.js image
 FROM node:18
 
-# یک دایرکتوری برای اپلیکیشن می‌سازیم
+# Create app directory
 WORKDIR /app
 
-# فایل‌های package.json و package-lock.json رو کپی می‌کنیم
+# Install app dependencies
 COPY package*.json ./
-
-# پکیج‌ها رو نصب می‌کنیم
 RUN npm install
 
-# بقیه کدها (index.js و...) رو کپی می‌کنیم
+# Bundle app source
 COPY . .
 
-# پورتی که اپلیکیشن گوش میده (اختیاری، اما بهتره)
+# Expose port 3000
 EXPOSE 3000
 
-# دستور اجرای برنامه
+# Start the app
 CMD ["npm", "start"]
